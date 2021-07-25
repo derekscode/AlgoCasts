@@ -11,6 +11,29 @@
 //    list.insertLast('d');
 //    fromLast(list, 2).data // 'b'
 
-function fromLast(list, n) {}
+const { LinkedList } = require('./linkedlist');
+
+function fromLast(list, n) {
+	let slow = list.getFirst();
+	let fast = list.getFirst();
+
+	for (let i = 0; i < n; i++) {
+		fast = fast.next;
+	}
+
+	while (fast.next) {
+		slow = slow.next;
+		fast = fast.next;
+	}
+
+	return slow;
+}
+
+const list = new LinkedList();
+list.insertLast('a');
+list.insertLast('b');
+list.insertLast('c');
+list.insertLast('d');
+fromLast(list, 2).data; // 'b'
 
 module.exports = fromLast;
